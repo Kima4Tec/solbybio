@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
   selector: 'app-movie-list',
   standalone: true,
   imports: [CommonModule],
+  providers: [MovieService],
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.css'],
 })

@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-show-list',
   standalone: true,
   imports: [CommonModule, RouterModule],
+  providers: [ShowService],
   templateUrl: './show-list.component.html',
   styleUrls: ['./show-list.component.css'],
 })
@@ -24,11 +25,11 @@ export class ShowListComponent implements OnInit {
 
   ngOnInit(): void {
     const movieId = this.route.snapshot.paramMap.get('movieId')!;
-    
+
     this.shows$ = this.showService.getShowsByMovie(movieId).pipe(
-      map(shows => {
+      map((shows) => {
         if (shows.length > 0) {
-          this.movieTitle = shows[0].movieTitle; // Brug title fra det første show
+          this.movieTitle = shows[0].movieTitle;
         }
         return shows;
       })

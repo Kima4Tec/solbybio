@@ -3,7 +3,17 @@
     <span class="brand">Solby Biografer</span>
     <a routerLink="/movies" class="nav-link">FILM</a>
   </div>
+
   <div class="navbar-right">
-    <a routerLink="/admin" class="nav-link">Admin</a>
+    <div class="dropdown">
+      <button class="dropdown-btn">
+        ADMIN ▾
+      </button>
+
+      <div class="dropdown-content">
+        <a routerLink="/admin/locations">Biografer & sale</a>
+        <a routerLink="/admin/program">Film & program</a>
+      </div>
+    </div>
   </div>
 </nav>

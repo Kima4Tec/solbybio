@@ -1,0 +1,77 @@
+<div class="admin-page">
+
+    <h2 class="page-title">Admin – Film & program</h2>
+    <div class="wrapper">
+        <div class="admin-card">
+            <h3>Opret film</h3>
+
+            <form (ngSubmit)="createMovie()">
+
+                <div class="form-group">
+                    <label for="movieTitle">Titel</label>
+                    <input id="movieTitle" [(ngModel)]="movie.title" name="movieTitle" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="movieDuration">Varighed (minutter)</label>
+                    <input id="movieDuration" type="number" [(ngModel)]="movie.durationMinutes" name="movieDuration"
+                        required />
+                </div>
+
+                <div class="form-group">
+                    <label for="movieAgeLimit">Aldersgrænse</label>
+                    <input id="movieAgeLimit" type="number" [(ngModel)]="movie.ageLimit" name="movieAgeLimit"
+                        required />
+                </div>
+
+                <div class="form-group">
+                    <label for="movieDescription">Beskrivelse</label>
+                    <textarea id="movieDescription" [(ngModel)]="movie.description" name="movieDescription"></textarea>
+                </div>
+
+                <button class="primary-btn" type="submit">Gem film</button>
+            </form>
+        </div>
+
+        <div class="admin-card">
+            <h3>Opret forestilling</h3>
+
+            <form (ngSubmit)="createShow()">
+
+                <div class="form-group">
+                    <label for="showMovie">Film</label>
+                    <select id="showMovie" [(ngModel)]="show.movieId" name="showMovieId" required>
+                        <option value="">Vælg film</option>
+                        <option *ngFor="let movie of movies" [value]="movie.id">
+                            {{ movie.title }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="showHall">Sal</label>
+                    <select id="showHall" [(ngModel)]="show.hallId" name="showHallId" required>
+                        <option value="">Vælg sal</option>
+                        <option *ngFor="let hall of halls" [value]="hall.id">
+                            {{ hall.name }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="showStartTime">Starttidspunkt</label>
+                    <input id="showStartTime" type="datetime-local" [(ngModel)]="show.startTime" name="showStartTime"
+                        required />
+                </div>
+
+                <div class="form-group">
+                    <label for="showPrice">Pris</label>
+                    <input id="showPrice" type="number" [(ngModel)]="show.price" name="showPrice" required />
+                </div>
+
+                <button class="primary-btn" type="submit">Gem forestilling</button>
+            </form>
+        </div>
+
+    </div>
+</div>

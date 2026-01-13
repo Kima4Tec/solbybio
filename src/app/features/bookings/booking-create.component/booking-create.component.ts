@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, FormsModule],
   templateUrl: './booking-create.component.html',
   styleUrl: './booking-create.component.css',
+  providers: [BookingService],
 })
 export class BookingCreateComponent {
   booking: Booking = {
