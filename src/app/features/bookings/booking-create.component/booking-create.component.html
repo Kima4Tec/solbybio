@@ -1,0 +1,7 @@
+<form (ngSubmit)="submit()">
+    <input placeholder="Show ID" [(ngModel)]="booking.showId" name="showId" />
+    <input placeholder="Customer ID" [(ngModel)]="booking.customerId" name="customerId" />
+    <input type="number" [(ngModel)]="booking.numberOfTickets" name="tickets" />
+
+    <button type="submit">Book</button>
+</form>

@@ -1,0 +1,7 @@
+<h2>Film</h2>
+
+<ul>
+    <li *ngFor="let movie of movies$ | async">
+        {{ movie.title }} ({{ movie.durationMinutes }} min)
+    </li>
+</ul>

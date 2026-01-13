@@ -1,0 +1,7 @@
+<h3>Forestillinger</h3>
+
+<ul>
+    <li *ngFor="let show of shows$ | async">
+        {{ show.startTime | date:'short' }} – {{ show.price }} kr.
+    </li>
+</ul>
