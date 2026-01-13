@@ -1,7 +1,12 @@
-<h2>Film</h2>
+<h2 class="title">Film</h2>
 
-<ul>
-    <li *ngFor="let movie of movies$ | async">
-        {{ movie.title }} ({{ movie.durationMinutes }} min)
-    </li>
-</ul>
+<div class="movies-container">
+  <div class="movie-card" *ngFor="let movie of movies$ | async" 
+       (click)="goToShows(movie.id)">
+    <h3 class="movie-title">{{ movie.title }}</h3>
+    <p><strong>Længde:</strong> {{ movie.durationMinutes }} min</p>
+    <p><strong>Aldersgrænse:</strong> {{ movie.ageLimit }} år</p>
+    <p class="movie-description">{{ movie.description }}</p>
+  </div>
+</div>
+

@@ -1,7 +1,16 @@
-<h3>Forestillinger</h3>
+<h2 class="title">{{ movieTitle }}</h2>
 
-<ul>
-    <li *ngFor="let show of shows$ | async">
-        {{ show.startTime | date:'short' }} – {{ show.price }} kr.
-    </li>
-</ul>
+<div class="shows-container">
+  <ng-container *ngIf="(shows$ | async) as shows">
+    <div *ngIf="shows.length === 0" class="show-card upcoming">
+      <p>Kommende film. Vises endnu ikke i nogle biografer.</p>
+    </div>
+
+    <div class="show-card" *ngFor="let show of shows" >
+      <p><strong>Hall:</strong> {{ show.hallName }}</p>
+      <p><strong>Start:</strong> {{ show.startTime | date:'dd/MM/yyyy HH:mm' }}</p>
+      <p><strong>Pris:</strong> {{ show.price }} kr</p>
+      <button class="book-btn">Bestil billetter</button>
+    </div>
+  </ng-container>
+</div>

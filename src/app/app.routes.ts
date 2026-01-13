@@ -5,6 +5,7 @@ import { BookingCreateComponent } from './features/bookings/booking-create.compo
 
 export const routes: Routes = [
   { path: 'movies', component: MovieListComponent },
-  { path: 'movies/:movieId/shows', component: ShowListComponent },
+  { path: 'shows/:movieId', component: ShowListComponent },
   { path: 'book', component: BookingCreateComponent },
+  { path: '', redirectTo: '/movies', pathMatch: 'full' }
 ];
