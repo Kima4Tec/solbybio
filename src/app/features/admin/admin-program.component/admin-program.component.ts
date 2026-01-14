@@ -6,6 +6,7 @@ import { MovieService } from '../../../core/services/movie.service';
 import { HallService } from '../../../core/services/hall.service';
 import { Hall } from '../../../models/hall.model/hall.model';
 import { Movie } from '../../../models/movie.model/movie.model';
+import { Director } from '../../../models/director.model/director.model';
 
 @Component({
   selector: 'app-admin-program.component',
@@ -16,13 +17,15 @@ import { Movie } from '../../../models/movie.model/movie.model';
 export class AdminProgramComponent implements OnInit {
   movies: Movie[] = [];
   halls: Hall[] = [];
+  directors: Director[] = [];
 
-  movie = {
-    title: '',
-    durationMinutes: 0,
-    ageLimit: 0,
-    description: '',
-  };
+movie = {
+  title: '',
+  durationMinutes: 0,
+  ageLimit: 0,
+  description: '',
+  directorIds: [] as string[]   // <-- til M:M relation
+};
 
   show = {
     movieId: '',
@@ -38,8 +41,9 @@ export class AdminProgramComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.movieService.getMovies().subscribe((m) => (this.movies = m));
-    this.hallService.getHalls().subscribe((h) => (this.halls = h));
+  this.movieService.getMovies().subscribe((m) => (this.movies = m));
+  this.hallService.getHalls().subscribe((h) => (this.halls = h));
+  this.adminService.getDirectors().subscribe((d) => (this.directors = d));
   }
 
   createMovie() {
@@ -50,6 +54,7 @@ export class AdminProgramComponent implements OnInit {
         durationMinutes: 0,
         ageLimit: 0,
         description: '',
+        directorIds: [] as string[]
       };
       this.movieService.getMovies().subscribe((m) => (this.movies = m));
     });
