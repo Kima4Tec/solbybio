@@ -3,14 +3,19 @@
 <div class="shows-container">
   <ng-container *ngIf="(shows$ | async) as shows">
     <div *ngIf="shows.length === 0" class="show-card upcoming">
-      <p>Kommende film. Vises endnu ikke i nogle biografer.</p>
+      <p>Kommende film. Vises endnu ikke.</p>
     </div>
 
     <div class="show-card" *ngFor="let show of shows" >
       <p><strong>Hall:</strong> {{ show.hallName }}</p>
       <p><strong>Start:</strong> {{ show.startTime | date:'dd/MM/yyyy HH:mm' }}</p>
       <p><strong>Pris:</strong> {{ show.price }} kr</p>
-      <button class="book-btn">Bestil billetter</button>
+<button
+  class="book-btn"
+  [routerLink]="['/book', show.id]"
+>
+  Bestil billetter
+</button>
     </div>
   </ng-container>
 </div>

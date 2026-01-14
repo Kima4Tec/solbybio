@@ -1,6 +1,7 @@
-export interface Booking {
-  id?: string;
+export interface BookingCreateDto {
   showId: string;
-  customerId: string;
+  customerName: string;
   numberOfTickets: number;
 }
+
+

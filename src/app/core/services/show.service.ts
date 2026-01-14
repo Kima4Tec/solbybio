@@ -9,7 +9,7 @@ export class ShowService {
 
   constructor(private http: HttpClient) {}
 
-  // Hent alle shows (hvis du får brug for det)
+  // Hent alle shows (valgfrit)
   getShows(): Observable<Show[]> {
     return this.http.get<Show[]>(this.apiUrl);
   }
@@ -17,5 +17,10 @@ export class ShowService {
   // Hent shows for en bestemt film
   getShowsByMovie(movieId: string): Observable<Show[]> {
     return this.http.get<Show[]>(`${this.apiUrl}/movie/${movieId}`);
+  }
+
+  // Hent ét show (til booking)
+  getShow(showId: string): Observable<Show> {
+    return this.http.get<Show>(`${this.apiUrl}/${showId}`);
   }
 }
