@@ -3,12 +3,12 @@ import { Router } from '@angular/router';
 import { MovieService } from '../../../core/services/movie.service';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
+import { Movie } from '../../../models/movie.model/movie.model';
 
 @Component({
   selector: 'app-movie-list',
   standalone: true,
   imports: [CommonModule],
-  providers: [MovieService],
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.css'],
 })
@@ -24,4 +24,8 @@ export class MovieListComponent implements OnInit {
   goToShows(movieId: string) {
     this.router.navigate(['/shows', movieId]);
   }
+  getDirectorNames(movie: Movie): string {
+  return movie.directors?.map(d => d.name).join(', ') ?? '';
+}
+
 }
