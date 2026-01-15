@@ -22,8 +22,11 @@ export class AdminService {
   }
 
   getDirectors(): Observable<Director[]> {
-  return this.http.get<Director[]>('https://localhost:7040/api/directors');
-}
+    return this.http.get<Director[]>(`${this.baseUrl}/directors`);
+  }
+  createDirector(name: string): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/directors`, { name });
+  }
 
   createShow(dto: any): Observable<void> {
     return this.http.post<void>(`${this.baseUrl}/shows`, dto);
