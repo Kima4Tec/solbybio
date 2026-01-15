@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule,NgIf, NgFor } from '@angular/common';
-import { BookingService, Booking } from '../../../core/services/booking.service';
+import { CommonModule, NgIf, NgFor } from '@angular/common';
+import {
+  BookingService,
+  Booking,
+} from '../../../core/services/booking.service';
 
 @Component({
   selector: 'app-admin-bookings',
   standalone: true,
   imports: [CommonModule, NgIf, NgFor],
   templateUrl: './admin-bookings.component.html',
-  styleUrls: ['./admin-bookings.component.css']
+  styleUrls: ['./admin-bookings.component.css'],
 })
 export class AdminBookingsComponent implements OnInit {
   bookings: Booking[] = [];
@@ -26,7 +29,7 @@ export class AdminBookingsComponent implements OnInit {
         this.error = 'Kunne ikke hente bookinger';
         console.error(err);
         this.loading = false;
-      }
+      },
     });
   }
 }

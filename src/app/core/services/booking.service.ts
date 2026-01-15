@@ -8,6 +8,8 @@ export interface Booking {
   movieTitle: string;
   showTime: string;
   customerName: string;
+  cinemaName: string;
+  hallName: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -17,18 +19,24 @@ export class BookingService {
 
   constructor(private http: HttpClient) {}
 
-createBooking(showId: string, customerName: string, tickets: number): Observable<void> {
-  // Opret først kunde
-  return this.http.post<{ id: string }>(this.customerApiUrl, { Name: customerName }).pipe(
-    switchMap(customer =>
-      this.http.post<void>(this.apiUrl, {
-        showId,
-        customerId: customer.id,
-        numberOfTickets: tickets
-      })
-    )
-  );
-}
+  createBooking(
+    showId: string,
+    customerName: string,
+    tickets: number
+  ): Observable<void> {
+    // Opret først kunde
+    return this.http
+      .post<{ id: string }>(this.customerApiUrl, { Name: customerName })
+      .pipe(
+        switchMap((customer) =>
+          this.http.post<void>(this.apiUrl, {
+            showId,
+            customerId: customer.id,
+            numberOfTickets: tickets,
+          })
+        )
+      );
+  }
 
   getAllBookings(): Observable<Booking[]> {
     return this.http.get<Booking[]>(this.apiUrl);
