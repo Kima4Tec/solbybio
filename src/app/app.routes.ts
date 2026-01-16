@@ -1,21 +1,28 @@
 import { Routes } from '@angular/router';
-import { MovieListComponent } from './features/movies/movie-list.component/movie-list.component';
-import { ShowListComponent } from './features/shows/show-list.component/show-list.component';
-import { BookingCreateComponent } from './features/bookings/booking-create.component/booking-create.component';
-import { AdminProgramComponent } from './features/admin/admin-program.component/admin-program.component';
-import { AdminLocationsComponent } from './features/admin/admin-location.component/admin-location.component';
-import { AdminBookingsComponent } from './features/admin/admin-bookings.component/admin-bookings.component';
-import { AdminDirectorsComponent } from './features/admin/admin-directors/admin-directors';
+import { AdminComponent } from './components/admin.component';
+import { AdminProgramComponent } from './pages/admin/program/admin-program.component';
+import { AdminLocationsComponent } from './pages/admin/locations/admin-location.component';
+import { AdminBookingsComponent } from './pages/admin/bookings/admin-bookings.component';
+import { AdminDirectorsComponent } from './pages/admin/directors/admin-directors';
+import { MovieListComponent } from './pages/movies/movie-list.component';
+import { ShowListComponent } from './pages/shows/show-list.component';
+import { BookingCreateComponent } from './pages/bookings/booking-create.component';
 
 export const routes: Routes = [
+  { path: '', redirectTo: '/movies', pathMatch: 'full' },
   { path: 'movies', component: MovieListComponent },
   { path: 'shows/:movieId', component: ShowListComponent },
   { path: 'book/:showId', component: BookingCreateComponent },
-
-  { path: 'admin/locations', component: AdminLocationsComponent },
-  { path: 'admin/program', component: AdminProgramComponent },
-  { path: 'admin/bookings', component: AdminBookingsComponent },
-  { path: 'admin/directors', component: AdminDirectorsComponent },
-
-  { path: '', redirectTo: '/movies', pathMatch: 'full' },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    data: { breadcrumb: 'Admin' }, // parent breadcrumb
+    children: [
+      { path: 'program', component: AdminProgramComponent, data: { breadcrumb: 'Film & program' } },
+      { path: 'locations', component: AdminLocationsComponent, data: { breadcrumb: 'Lokationer' } },
+      { path: 'bookings', component: AdminBookingsComponent, data: { breadcrumb: 'Bookinger' } },
+      { path: 'directors', component: AdminDirectorsComponent, data: { breadcrumb: 'Instruktører' } }
+    ]
+  },
+  { path: '', redirectTo: '/admin/program', pathMatch: 'full' }
 ];
